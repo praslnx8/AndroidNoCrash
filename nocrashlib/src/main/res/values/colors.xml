@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gp_red">#dd4b39</color>
+
+    <color name="brand">#ff0039</color>
+
+    <color name="statusBar">@color/gray1</color>
+    <color name="actionBar">@color/brand</color>
+
+    <color name="primary">@color/brand</color>
+    <color name="primaryDark">@color/brand</color>
+    <color name="primaryText">#ccff0039</color>
+    <color name="tprimary">#AAFF0039</color>
+    <color name="accent">#ff0039</color>
+
+    <color name="secondary">#160758</color>
+    <color name="secondaryDark">#160758</color>
+    <color name="tsecondary">#cc160758</color>
+
+    <color name="black">#000000</color>
+    <color name="gray1">#111111</color>
+    <color name="gray2">#31302F</color>
+    <color name="gray3">#555555</color>
+    <color name="gray4">#6C687D</color>
+    <color name="gray5">#999999</color>
+    <color name="lgray1">#F1F2F3</color>
+    <color name="lgray2">#EDEDED</color>
+    <color name="lgray3">#DEDEDE</color>
+    <color name="lgray4">#D6D6D6</color>
+    <color name="lgray5">#CACACA</color>
+    <color name="lgray6">#B6B6B6</color>
+    <color name="lgray7">#AAAAAA</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="textColor">@color/gray4</color>
+    <color name="titleColor">@color/gray2</color>
+
+<!-- Transparent shades of all colors used -->
+    <color name="tblack">#AA000000</color>
+    <color name="tgray1">#CC111111</color>
+    <color name="tgray2">#AA333333</color>
+    <color name="tgray3">#AA555555</color>
+    <color name="tgray4">#AA777777</color>
+    <color name="tgray5">#AA999999</color>
+    <color name="tlgray1">#AAF3F3F3</color>
+    <color name="tlgray2">#AAEDEDED</color>
+    <color name="tlgray3">#AADEDEDE</color>
+    <color name="tlgray4">#AAD6D6D6</color>
+    <color name="tlgray5">#AACACACA</color>
+    <color name="tlgray6">#AAB6B6B6</color>
+    <color name="tlgray7">#AAAAAAAA</color>
+    <color name="twhite">#AAFFFFFF</color>
+
+    <color name="gradientStart">#dd333333</color>
+    <color name="gradientEnd">#00333333</color>
+
+<!-- Interesting material colors to be used -->
+    <color name="lime">#CDDC39</color>
+    <color name="green">#8BC34A</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="lightYellow">#f4f4b2</color>
+    <color name="amber">#FFC107</color>
+    <color name="orange">#FF5722</color>
+    <color name="maroon">#CD100E</color>
+    <color name="pink">#FF4081</color>
+    <color name="purple">#9C27B0</color>
+    <color name="blue">#160758</color>
+    <color name="darkBlue">#160758</color>
+    <color name="lightBlue">#03A9F4</color>
+
+    <color name="linkTextColor">@color/primary</color>
+
+</resources>

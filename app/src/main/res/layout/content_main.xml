@@ -18,8 +18,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="This is a Demo of no crash library. this app will never get crashed instead it will restart your app and also send error report to your mail"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="0dp"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:text="prasilnx8@gmail.com"/>
+
+            <EditText
+                android:id="@+id/edit_email_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:layout_gravity="center"
+                android:hint="Set Email"/>
+
+            <Button
+                android:id="@+id/email_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/crash_btn"

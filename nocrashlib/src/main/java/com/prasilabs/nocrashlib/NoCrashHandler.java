@@ -11,10 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.lang.ref.WeakReference;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by prasi on 7/11/15.
@@ -78,7 +80,7 @@ public class NoCrashHandler
                         {
 
                             //call crash reporter;
-                            CrashReporter.reportCrash(throwable.getStackTrace().toString(), new CrashReporter.CrashReportResultReciever() {
+                            CrashReporter.reportCrash(getErrorMessage(throwable), new CrashReporter.CrashReportResultReciever() {
                                 @Override
                                 public void result(String response)
                                 {
@@ -185,7 +187,7 @@ public class NoCrashHandler
     }
 
     @SuppressWarnings("unchecked")
-    public static Class<? extends Activity> getRestartActivityClassFromIntent(Intent intent) {
+    private static Class<? extends Activity> getRestartActivityClassFromIntent(Intent intent) {
         Serializable serializedClass = intent.getSerializableExtra(NoCrashHandler.EXTRA_RESTART_ACTIVITY_CLASS);
 
         if (serializedClass != null && serializedClass instanceof Class) {
@@ -298,10 +300,14 @@ public class NoCrashHandler
     }
 
 
-    public static void restartApplicationWithIntent(Activity activity, Intent intent) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    public static void restartApplicationWithIntent(Activity activity, Intent intent)
+    {
+        final Class<? extends Activity> restartActivityClass = getRestartActivityClassFromIntent(intent);
+        Intent restartIntent = new Intent(activity, restartActivityClass);
+
+        restartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.finish();
-        activity.startActivity(intent);
+        activity.startActivity(restartIntent);
         killCurrentProcess();
     }
 
@@ -315,6 +321,11 @@ public class NoCrashHandler
         killCurrentProcess();
     }
 
+    public static void setEmail(String email)
+    {
+        CrashReporter.email = email;
+    }
+
     /**
      * INTERNAL method that kills the current process.
      * It is used after restarting or killing the app.
@@ -322,5 +333,42 @@ public class NoCrashHandler
     private static void killCurrentProcess() {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(10);
+    }
+
+    private static String getErrorMessage(Throwable throwable)
+    {
+        final Writer result = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(result);
+        throwable.printStackTrace(printWriter);
+        String stacktrace = result.toString();
+        printWriter.close();
+
+        return stacktrace;
+    }
+
+
+    private static String getErrorMessage(Exception e)
+    {
+        final Writer result = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(result);
+        e.printStackTrace(printWriter);
+        String stacktrace = result.toString();
+        printWriter.close();
+
+        return stacktrace;
+    }
+
+    public static void sendExceptionReportReport(Exception e)
+    {
+        String stackTrace = getErrorMessage(e);
+
+        CrashReporter.reportCrash(stackTrace, null);
+    }
+
+    public static void sendExceptionReport(Throwable t)
+    {
+        String stackTrace = getErrorMessage(t);
+
+        CrashReporter.reportCrash(stackTrace, null);
     }
 }

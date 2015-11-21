@@ -2,9 +2,9 @@ package com.prasilabs.nocrashlib;
 
 import android.os.AsyncTask;
 import android.support.v4.util.ArrayMap;
+import android.text.TextUtils;
 import android.util.Log;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -24,9 +24,10 @@ import java.net.URLEncoder;
 public class CrashReporter extends AsyncTask<String, String, String>
 {
     private static final String TAG = CrashReporter.class.getSimpleName();
-    private static final String webUrl = "http://locad.netne.net/WebContent/FRIENDS/get_friend_request.php?user_hash=39d8e25d6761dd28c57e72ba0f0e4e7a";
+    private static final String webUrl = "http://nocrash.netai.net/FrontEnd/crash_report.php";
 
     private String crashReport;
+    public static String email;
 
     private CrashReportResultReciever crashReportResultReciever;
     private InputStream is = null;
@@ -38,7 +39,7 @@ public class CrashReporter extends AsyncTask<String, String, String>
         crashReporter.execute();
     }
 
-    public CrashReporter(String crash, CrashReportResultReciever crashReportResultReciever)
+    private CrashReporter(String crash, CrashReportResultReciever crashReportResultReciever)
     {
         this.crashReport = crash;
         this.crashReportResultReciever = crashReportResultReciever;
@@ -67,7 +68,11 @@ public class CrashReporter extends AsyncTask<String, String, String>
             conn.setDoInput(true);
 
             ArrayMap mParams = new ArrayMap();
-            mParams.put("email", "praslnx&gmail.com");
+            if(TextUtils.isEmpty(email))
+            {
+                mParams.put("email", "praslnx&gmail.com");
+            }
+            mParams.put("email", email);
             mParams.put("crash_report", crashReport);
 
             OutputStream os = conn.getOutputStream();

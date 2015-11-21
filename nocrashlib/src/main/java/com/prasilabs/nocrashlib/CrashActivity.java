@@ -23,11 +23,7 @@ public class CrashActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                final Class<? extends Activity> restartActivityClass = NoCrashHandler.getRestartActivityClassFromIntent(getIntent());
-
-                Intent intent = new Intent(CrashActivity.this, restartActivityClass);
-
-                NoCrashHandler.restartApplicationWithIntent(CrashActivity.this, intent);
+                NoCrashHandler.restartApplicationWithIntent(CrashActivity.this, new Intent());
 
             }
         });

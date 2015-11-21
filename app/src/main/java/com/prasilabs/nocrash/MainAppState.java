@@ -14,7 +14,8 @@ public class MainAppState extends Application
     {
         super.onCreate();
 
-        //NoCrashHandler.install(getApplicationContext());
-        //NoCrashHandler.setCustomCrashActivity(CustomCrashActivity.class);
+        NoCrashHandler.install(getApplicationContext());
+        NoCrashHandler.setCustomCrashActivity(CustomCrashActivity.class);
+        //NoCrashHandler.setEmail("praslnx8@gmail.com");
     }
 }

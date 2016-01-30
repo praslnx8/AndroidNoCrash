@@ -1,5 +1,7 @@
 package com.prasilabs.nocrash;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 
     private EditText emailEditText;
     private TextView emailText;
-    private Button setEmailBtn;
+    private Button setEmailBtn, gitHubBtn;
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         emailEditText = (EditText) findViewById(R.id.edit_email_text);
         emailText = (TextView) findViewById(R.id.email_text);
         setEmailBtn = (Button) findViewById(R.id.email_button);
+        gitHubBtn = (Button) findViewById(R.id.github_btn);
 
         setEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +82,16 @@ public class MainActivity extends AppCompatActivity
                     emailEditText.setVisibility(View.VISIBLE);
                     emailText.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        gitHubBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://github.com/praslnx8/nocrash";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
 
